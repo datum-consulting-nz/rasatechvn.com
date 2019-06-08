@@ -25,7 +25,7 @@ export const pageQuery = graphql`
                             title
                             description
                             fluid {
-                                base64
+                                src
                             }
                         }
                         headerCallToActionTitle
@@ -39,8 +39,8 @@ export const pageQuery = graphql`
                             icon {
                                 title
                                 description
-                                fixed(toFormat: NO_CHANGE) {
-                                    tracedSVG
+                                file {
+                                    url
                                 }
                             }
                             header
@@ -50,7 +50,7 @@ export const pageQuery = graphql`
                             link
                             image {
                                 fluid {
-                                    base64
+                                    src
                                 }
                             }
                             imageLeft
@@ -60,4 +60,5 @@ export const pageQuery = graphql`
             }
         }
     }
+
 `;

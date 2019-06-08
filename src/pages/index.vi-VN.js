@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-    query IndexVI {
+    query IndexVN {
         allContentfulPage(filter: {node_locale: {eq: "vi-VN"}}) {
             edges {
                 node {
@@ -25,7 +25,7 @@ export const pageQuery = graphql`
                             title
                             description
                             fluid {
-                                base64
+                                src
                             }
                         }
                         headerCallToActionTitle
@@ -39,8 +39,8 @@ export const pageQuery = graphql`
                             icon {
                                 title
                                 description
-                                fixed(toFormat: NO_CHANGE) {
-                                    tracedSVG
+                                file {
+                                    url
                                 }
                             }
                             header
@@ -50,7 +50,7 @@ export const pageQuery = graphql`
                             link
                             image {
                                 fluid {
-                                    base64
+                                    src
                                 }
                             }
                             imageLeft
@@ -60,4 +60,5 @@ export const pageQuery = graphql`
             }
         }
     }
+
 `;
