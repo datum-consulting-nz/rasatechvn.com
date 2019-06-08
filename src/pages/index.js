@@ -1,21 +1,45 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { graphql, navigate, withPrefix } from 'gatsby';
+import { getUserLangKey } from 'ptz-i18n';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+class RedirectIndex extends React.PureComponent {
+  constructor(args) {
+    super(args);
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+    // Skip build, Browsers only
+    if (typeof window !== 'undefined') {
+      const { langs, defaultLangKey } = args.data.site.siteMetadata;
+      const langKey = getUserLangKey(langs, defaultLangKey);
 
-export default IndexPage
+      // Check if previous chosen 'lang'
+      const userLang = localStorage.getItem('lang');
+      // If none user chosen 'lang', use default
+      if (!userLang) {
+        localStorage.setItem('lang', defaultLangKey);
+      }
+
+      // Prefer
+      const homeUrl = withPrefix(`/${userLang || langKey}/`);
+
+      navigate(homeUrl);
+    }
+  }
+
+  render() {
+    // It's recommended to add your SEO solution in here for bots
+    return (<div/>);
+  }
+}
+
+export default RedirectIndex;
+
+export const pageQuery = graphql`
+    query IndexQuery {
+        site{
+            siteMetadata{
+                defaultLangKey
+                langs
+            }
+        }
+    }
+`;
