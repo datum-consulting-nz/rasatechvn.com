@@ -52,6 +52,24 @@ module.exports = {
         prefixDefault: true,
         useLangKeyLayout: false
       }
+    },
+    `gatsby-plugin-remove-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Roboto`,
+            variants: [`700`],
+            subsets: [`vietnamese`],
+          },
+          {
+            family: `Source Sans Pro`,
+            variants: [`400`, `700`],
+            subsets: [`vietnamese`],
+          },
+        ],
+      },
     }
   ],
 };

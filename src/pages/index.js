@@ -19,7 +19,7 @@ class RedirectIndex extends React.PureComponent {
       }
 
       // Prefer
-      const homeUrl = withPrefix(`/${userLang || langKey}/`);
+      const homeUrl = withPrefix(`/${userLang || langKey}`);
 
       navigate(homeUrl);
     }

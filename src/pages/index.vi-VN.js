@@ -1,10 +1,12 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import IndexLayout from '../Layout/IndexLayout';
 
-const IndexPage = () => (
-  <>
-    Xin chao
-  </>
-);
+const IndexPage = ({ data }) => {
+  return (
+    <IndexLayout pageData={data.allContentfulPage.edges[0].node}/>
+  );
+};
 
 export default IndexPage;
 
@@ -37,7 +39,7 @@ export const pageQuery = graphql`
                             icon {
                                 title
                                 description
-                                fixed(toFormat: WEBP) {
+                                fixed(toFormat: NO_CHANGE) {
                                     tracedSVG
                                 }
                             }
