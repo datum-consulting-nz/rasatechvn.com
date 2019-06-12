@@ -4,7 +4,7 @@ import { Box, Heading, theme } from "rasatech-design-system";
 import StyledDivWithDimensions from "./StyledDivWithDimensions";
 import FlexWrapperCenter from "./FlexWrapperCenter";
 import styled from "styled-components";
-import ButtonWithGatsbyLink from "./ButtonWithGatsbyLink"
+import ButtonWithGatsbyLink from "./ButtonWithGatsbyLink";
 
 const BoxWithTextShadow = styled(Box)`
   text-shadow: 0 0 5px ${theme.colors.black};
@@ -44,12 +44,16 @@ const Header = ({ headerData }) => {
             {headerSubTitle}
           </Heading.h3>
 
-          <ButtonWithGatsbyLink
-            size="large"
-            fontSize={[4]}
-          >
-            {headerCallToActionTitle}
-          </ButtonWithGatsbyLink>
+          {headerShowCallToActionButton ? (
+            <ButtonWithGatsbyLink
+              size="large"
+              fontSize={[4]}
+              to={headerCallToActionLink}
+            >
+              {headerCallToActionTitle}
+            </ButtonWithGatsbyLink>
+          ) : null
+          }
         </BoxWithTextShadow>
       </FlexWrapperCenter>
     </StyledDivWithDimensions>
